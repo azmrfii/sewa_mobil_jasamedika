@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use App\Models\Manajemen;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ManajemenRequest;
+use GuzzleHttp\Psr7\Request;
 
 class ManajemenController extends Controller
 {

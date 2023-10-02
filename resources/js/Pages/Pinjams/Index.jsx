@@ -1,7 +1,7 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, Link, usePage, router } from '@inertiajs/react';
 
-export default function Manajemen({ auth }) {
+export default function PinjamMobil({ auth }) {
     const { pinjams } = usePage().props
     const { manajemens } = usePage().props
 
@@ -36,16 +36,18 @@ export default function Manajemen({ auth }) {
                                     <tr className="bg-gray-100">
                                         <th className="px-4 py-2">Tanggal Mulai</th>
                                         <th className="px-4 py-2">Tanggal Selesai</th>
-                                        <th className="px-4 py-2">Mobil</th>
+                                        <th className="px-4 py-2">Mobil Id</th>
+                                        <th className="px-4 py-2">Sewa</th>
                                         <th className="px-4 py-2">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {pinjams.map(({ id, tgl_mulai, tgl_selesai, manajemen_id, user_id }) => (
+                                    {pinjams.map(({ id, tgl_mulai, tgl_selesai, manajemen_id, user_id, sewa }) => (
                                         <tr>
                                             <td className="border px-4 py-2">{ tgl_mulai }</td>
                                             <td className="border px-4 py-2">{ tgl_selesai }</td>
                                             <td className="border px-4 py-2">{ manajemen_id }</td>
+                                            <td className="border px-4 py-2">IDR. { sewa }</td>
                                             <td className="border px-4 py-2">
                                                 <Link
                                                     tabIndex="1"

@@ -10,9 +10,13 @@ class Pinjam extends Model
     use HasFactory;
 
     protected $fillable = [
-        'tgl_mulai', 'tgl_selesai', 'manajemen_id', 'user_id'
+        'tgl_mulai', 'tgl_selesai', 'manajemen_id', 'user_id', 'sewa'
     ];
 
+    public function pengembalians(){
+        return $this->hasMany(Pengembalian::class);
+    }
+    
     public function manajemen(){
         return $this->belongsTo(Manajemen::class);
     }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ManajemenController;
+use App\Http\Controllers\PengembalianController;
 use App\Http\Controllers\PinjamController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -20,6 +21,7 @@ use Inertia\Inertia;
 
 Route::resource('manajemens', ManajemenController::class);
 Route::resource('pinjams', PinjamController::class);
+Route::resource('pengembalians', PengembalianController::class);
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [

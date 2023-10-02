@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nomor_plat')->unique();
             $table->float('tarif_sewa');
             $table->foreignId('user_id')->constrained()->nullable();
+            $table->enum('status', ['tersedia', 'tersewa'])->default('tersedia');
             $table->timestamps();
         });
     }

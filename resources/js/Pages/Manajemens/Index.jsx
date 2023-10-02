@@ -37,16 +37,18 @@ export default function Manajemen({ auth }) {
                                         <th className="px-4 py-2">Model</th>
                                         <th className="px-4 py-2">Nomor Plat</th>
                                         <th className="px-4 py-2">Tarif Sewa</th>
+                                        <th className="px-4 py-2">Status</th>
                                         <th className="px-4 py-2">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {manajemens.map(({ id, merek, model, nomor_plat, tarif_sewa }) => (
+                                    {manajemens.map(({ id, merek, model, nomor_plat, tarif_sewa, status }) => (
                                         <tr>
                                             <td className="border px-4 py-2">{ merek }</td>
                                             <td className="border px-4 py-2">{ model }</td>
                                             <td className="border px-4 py-2">{ nomor_plat }</td>
                                             <td className="border px-4 py-2">IDR. { tarif_sewa }</td>
+                                            <td className="border px-4 py-2">{ status }</td>
                                             <td className="border px-4 py-2">
                                                 <Link
                                                     tabIndex="1"

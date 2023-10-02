@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('pengembalians', function (Blueprint $table) {
             $table->id();
-            $table->string('nomor_plat')->unique();
+            $table->string('pinjam_id')->unique();
             $table->float('biaya_sewa');
             $table->foreignId('user_id')->constrained()->nullable();
             $table->timestamps();

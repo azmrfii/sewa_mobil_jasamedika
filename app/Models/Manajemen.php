@@ -15,6 +15,7 @@ class Manajemen extends Model
         'nomor_plat',
         'tarif_sewa',
         'user_id',
+        'status'
     ];
 
     public function pinjams()

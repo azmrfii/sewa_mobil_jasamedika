@@ -10,11 +10,17 @@ class Pengembalian extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nomor_plat', 'biaya_sewa', 'user_id'
+        'pinjam_id', 'biaya_sewa', 'user_id'
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
+    
+    public function pinjam()
+    {
+        return $this->belongsTo(Pinjam::class);
+    }
+
 }

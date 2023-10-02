@@ -33,7 +33,6 @@ class PinjamController extends Controller
     public function create()
     {
         $manajemens = Manajemen::all();
-        // $users = User::all();
 
         return Inertia::render('Pinjams/Create', compact('manajemens'));
     }
@@ -43,17 +42,31 @@ class PinjamController extends Controller
      */
     public function store(Request $request)
     {
-        $pinjam = new Pinjam();
-        $pinjam->tgl_mulai = $request->input('tgl_mulai');
-        $pinjam->tgl_selesai = $request->input('tgl_selesai');
-        $pinjam->manajemen_id = $request->input('manajemen_id');
-        $pinjam->user_id = Auth::user()->id;
+        $request->validate([
+            'manajemen_id' => 'required|integer|exists:manajemens,id',
+            'tgl_mulai' => 'required|date',
+            'tgl_selesai' => 'required|date|after:tgl_mulai',
+        ]);
+        
+        $manajemen = Manajemen::find($request->manajemen_id);
+        if($manajemen->status == 'tersedia') {
+            $pinjam = new Pinjam;
+            // $pinjam->tgl_mulai = $request->tgl_mulai;
+            $pinjam->tgl_mulai = Carbon::parse($request->tgl_mulai);
+            // $pinjam->tgl_selesai = $request->tgl_selesai;
+            $pinjam->tgl_selesai = Carbon::parse($request->tgl_selesai);
 
-        if($pinjam->tgl_mulai < Carbon::now() || $pinjam->tgl_selesai < $pinjam->tgl_mulai) {
-            return redirect()->route('pinjams.create');
+            $days = $pinjam->tgl_selesai->diffInDays($pinjam->tgl_mulai);
+
+            $pinjam->manajemen_id = $request->input('manajemen_id');
+            $pinjam->user_id = Auth::user()->id;
+            $pinjam->sewa = $manajemen->tarif_sewa * $days;
+            // dd($pinjam);
+            $pinjam->save();
+
+            return redirect()->route('pinjams.index');
         }
 
-        $pinjam->save();
         return redirect()->route('pinjams.index');
     }
 

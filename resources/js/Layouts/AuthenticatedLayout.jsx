@@ -30,6 +30,9 @@ export default function Authenticated({ user, header, children }) {
                                 <NavLink href={route('pinjams.index')} active={route().current('pinjams.index')}>
                                     Pinjam Mobil
                                 </NavLink>
+                                <NavLink href={route('pengembalians.index')} active={route().current('pengembalians.index')}>
+                                    Pengembalian Mobil
+                                </NavLink>
                             </div>
                         </div>
 

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->date('tgl_selesai');
             $table->foreignId('manajemen_id')->constrained();
             $table->foreignId('user_id')->constrained()->nullable();
+            $table->float('sewa');
             $table->timestamps();
         });
     }

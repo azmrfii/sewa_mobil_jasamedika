@@ -37,6 +37,18 @@ export default function Pengembalian({ auth }) {
                                     <InputLabel htmlFor="pinjam_id" value="Pinjam Id" />
 
                                     <SelectInput
+                                    id="pinjam_id" 
+                                    name="pinjam_id" 
+                                    className="w-full px-4 py-2" 
+                                    autoComplete="pinjam_id"
+                                    onChange={(e) => setData('pinjam_id', e.target.value)}
+                                    >
+                                        <option>--Kembalikan Pinjaman--</option>
+                                        {pinjams.map(({ id, tgl_mulai, tgl_selesai, manajemen_id, sewa }) => (
+                                             <option value={id}>Mobil Id: {manajemen_id}, Sewa: {sewa}</option>
+                                        ))}
+                                    </SelectInput>
+                                    {/* <SelectInput
                                      id="pinjam_id" 
                                      name="pinjam_id" 
                                      className="w-full px-4 py-2" 
@@ -44,19 +56,10 @@ export default function Pengembalian({ auth }) {
                                      onChange={(e) => setData('pinjam_id', e.target.value)}
                                     >
                                         <option>--Kembalikan Pinjaman--</option>
-                                        {pinjams.map(({ id, tgl_mulai, tgl_selesai, mobil_id, sewa }) => (
-                                            <option value={pinjam_id}>Tanggal Mulai: {tgl_mulai}, Tanggal Selesai: {tgl_akhir}, Mobil Id: {mobil_id}, Tarif Sewa: IDR. {sewa}</option>
+                                        {pinjams.map(({ id, tgl_mulai, tgl_selesai, manajemen_id, sewa }) => (
+                                            <option value={pinjam_id}>Tanggal Mulai: {tgl_mulai}, Tanggal Selesai: {tgl_akhir}, Mobil Id: {manajemen_id}, Tarif Sewa: IDR. {sewa}</option>
                                         ))}
-                                    </SelectInput>
-                                    {/* <TextInput
-                                        id="pinjam_id"
-                                        name="pinjam_id"
-                                        value={data.pinjam_id}
-                                        onChange={(e) => setData('pinjam_id', e.target.value)}
-                                        type="text"
-                                        className="w-full px-4 py-2"
-                                        autoComplete="pinjam_id"
-                                    /> */}
+                                    </SelectInput> */}
 
                                     <InputError message={errors.pinjam_id} className="mt-2" />
                                 </div>
@@ -66,7 +69,7 @@ export default function Pengembalian({ auth }) {
 
                                     <Link
                                     className="px-6 py-2 text-white bg-yellow-500 rounded-md focus:outline-none"
-                                    href={ route("manajemens.index") }
+                                    href={ route("pengembalians.index") }
                                     >
                                         Back
                                     </Link>

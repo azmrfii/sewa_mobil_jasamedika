@@ -29,6 +29,7 @@ class PengembalianController extends Controller
     public function create()
     {
         $pinjams = Pinjam::where('user_id', Auth::user()->id)->get();
+        // $pinjams = Pinjam::all();
         return Inertia::render('Pengembalians/Create', compact('pinjams'));
     }
 
@@ -43,15 +44,16 @@ class PengembalianController extends Controller
 
         $pinjam = Pinjam::find($request->pinjam_id);
 
-        $pinjam->tgl_mulai = Carbon::parse($pinjam->tgl_mulai);
-        
-        $pinjam->tgl_selesai = Carbon::parse($pinjam->tgl_selesai);
+        $pengembalian = new Pengembalian;   
+        $pengembalian->pinjam_id = $request->input('pinjam_id');
+        // $pengembalian->biaya_sewa = $pinjam->manajemen->tarif_sewa * $days;
+        $pengembalian->user_id = Auth::user()->id;
+        $pengembalian->biaya_sewa = $pinjam->sewa;
+        // dd($pengembalian);
+        $pengembalian->save();
 
-        $days = $pinjam->tgl_selesai->diffInDays($pinjam->tgl_mulai);
-
-        $pinjam->biaya_sewa = $pinjam->manajemen->tarif_sewa * $days;
-        // $pinjam->save();
-        dd($pinjam);
+        return redirect()->route('pengembalians.index');
+        // dd($pinjam);
 
         // $pinjam = Pinjam::where('user_id', Auth::user()->id)->get();
         // $pengembalian = new Pengembalian();

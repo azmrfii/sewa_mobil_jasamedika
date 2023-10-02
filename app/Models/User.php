@@ -18,8 +18,10 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
+        'nama',
+        'alamat',
+        'nomor_handphone',
+        'nomor_sim',
         'password',
     ];
 
@@ -42,4 +44,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function pinjams()
+    {
+        return $this->hasMany(Pinjam::class);
+    }
+
+    public function manajemens()
+    {
+        return $this->hasMany(Manajemen::class);
+    }
+
+    public function pengembalians()
+    {
+        return $this->hasMany(Pengembalian::class);
+    }
 }

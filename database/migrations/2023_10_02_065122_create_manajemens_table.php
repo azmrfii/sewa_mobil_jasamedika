@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('manajemens', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->text('alamat');
-            $table->bigInteger('nomor_handphone')->nullable();
-            $table->bigInteger('nomor_sim')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('merek');
+            $table->string('model');
+            $table->string('nomor_plat')->unique();
+            $table->float('tarif_sewa');
+            $table->foreignId('user_id')->constrained()->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('manajemens');
     }
 };

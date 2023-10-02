@@ -8,8 +8,10 @@ import { Head, Link, useForm } from '@inertiajs/react';
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
-        name: '',
-        email: '',
+        nama: '',
+        alamat: '',
+        nomor_handphone: '',
+        nomor_sim: '',
         password: '',
         password_confirmation: '',
     });
@@ -32,37 +34,73 @@ export default function Register() {
 
             <form onSubmit={submit}>
                 <div>
-                    <InputLabel htmlFor="name" value="Name" />
+                    <InputLabel htmlFor="nama" value="nama" />
 
                     <TextInput
-                        id="name"
-                        name="name"
-                        value={data.name}
+                        id="nama"
+                        name="nama"
+                        value={data.nama}
                         className="mt-1 block w-full"
-                        autoComplete="name"
+                        autoComplete="nama"
                         isFocused={true}
-                        onChange={(e) => setData('name', e.target.value)}
+                        onChange={(e) => setData('nama', e.target.value)}
                         required
                     />
 
-                    <InputError message={errors.name} className="mt-2" />
+                    <InputError message={errors.nama} className="mt-2" />
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="email" value="Email" />
+                    <InputLabel htmlFor="alamat" value="alamat" />
 
                     <TextInput
-                        id="email"
-                        type="email"
-                        name="email"
-                        value={data.email}
+                        id="alamat"
+                        type="text"
+                        name="alamat"
+                        value={data.alamat}
                         className="mt-1 block w-full"
-                        autoComplete="username"
-                        onChange={(e) => setData('email', e.target.value)}
+                        autoComplete="alamat"
+                        onChange={(e) => setData('alamat', e.target.value)}
                         required
                     />
 
-                    <InputError message={errors.email} className="mt-2" />
+                    <InputError message={errors.alamat} className="mt-2" />
+                </div>
+
+                <div className="mt-4">
+                    <InputLabel htmlFor="nomor_handphone" value="nomor_handphone" />
+
+                    <TextInput
+                        id="nomor_handphone"
+                        type="number"
+                        min="12"
+                        name="nomor_handphone"
+                        value={data.nomor_handphone}
+                        className="mt-1 block w-full"
+                        autoComplete="nomor_handphone"
+                        onChange={(e) => setData('nomor_handphone', e.target.value)}
+                        required
+                    />
+
+                    <InputError message={errors.nomor_handphone} className="mt-2" />
+                </div>
+
+                <div className="mt-4">
+                    <InputLabel htmlFor="nomor_sim" value="nomor_sim" />
+
+                    <TextInput
+                        id="nomor_sim"
+                        type="number"
+                        min="12"
+                        name="nomor_sim"
+                        value={data.nomor_sim}
+                        className="mt-1 block w-full"
+                        autoComplete="nomor_sim"
+                        onChange={(e) => setData('nomor_sim', e.target.value)}
+                        required
+                    />
+
+                    <InputError message={errors.nomor_sim} className="mt-2" />
                 </div>
 
                 <div className="mt-4">

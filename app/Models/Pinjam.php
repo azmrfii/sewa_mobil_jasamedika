@@ -10,7 +10,7 @@ class Pinjam extends Model
     use HasFactory;
 
     protected $fillable = [
-        'tgl_mulai', 'tgl_selesai', 'manajemen_id', 'user_id', 'sewa'
+        'tgl_mulai', 'tgl_selesai', 'manajemen_id', 'user_id', 'sewa', 'status'
     ];
 
     public function pengembalians(){

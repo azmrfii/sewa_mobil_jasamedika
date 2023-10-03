@@ -43,44 +43,15 @@ class PengembalianController extends Controller
         ]);
 
         $pinjam = Pinjam::find($request->pinjam_id);
-
+        
         $pengembalian = new Pengembalian;   
         $pengembalian->pinjam_id = $request->input('pinjam_id');
-        // $pengembalian->biaya_sewa = $pinjam->manajemen->tarif_sewa * $days;
         $pengembalian->user_id = Auth::user()->id;
         $pengembalian->biaya_sewa = $pinjam->sewa;
         // dd($pengembalian);
         $pengembalian->save();
 
         return redirect()->route('pengembalians.index');
-        // dd($pinjam);
-
-        // $pinjam = Pinjam::where('user_id', Auth::user()->id)->get();
-        // $pengembalian = new Pengembalian();
-
-        // $manajemen = Manajemen::all();
-
-
-        // $pengembalian->nomor_plat = $request->input('nomor_plat');
-        // // $pinjam->manajemen_id = $manajemen->id;
-        // $pinjam = Pinjam::where('user_id', Auth::user()->id)->where('nomor_plat' == $pinjam->manajemen_id)->get();
-        // dd($pinjam);
-
-        // $tgl_mulai = $pinjam->tgl_mulai;
-        // $tgl_selesai = $pinjam->tgl_selesai;
-
-        // $banyak_hari = $tgl_mulai->diff($tgl_selesai);
-
-        // $pengembalian->biaya_sewa = $banyak_hari * $manajemen->tarif_sewa; 
-        // $pengembalian->user_id = Auth::user()->id;
-
-        // $request->validate([
-        //     'nomor_plat' => 'required|exists:manajemen',
-        // ]);
-
-        // $pinjam = Pinjam::where('manajemen_id', $request->nomor_plat)->first();
-        // $hari = $request->tgl_selesai->diffInDays($pinjam->tgl_mulai);
-        // $harga = 
     }
 
     /**

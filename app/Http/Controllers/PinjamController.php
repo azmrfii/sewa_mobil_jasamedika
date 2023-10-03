@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PinjamRequest;
-use App\Models\Manajemen;
+use Carbon\Carbon;
+use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Pinjam;
-use App\Models\User;
-use Carbon\Carbon;
-use Illuminate\Console\View\Components\Alert;
+use App\Models\Manajemen;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-
 use function Laravel\Prompts\alert;
+use App\Http\Requests\PinjamRequest;
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Builder;
 
 class PinjamController extends Controller
 {
@@ -32,7 +32,19 @@ class PinjamController extends Controller
      */
     public function create()
     {
-        $manajemens = Manajemen::all();
+        // $manajemens = \Illuminate\Support\Facades\DB::table('manajemens');
+        // ->where('status', 'tersedia')
+        // ->where(function (Builder $query) {
+        //     $query->where('votes', '>', 100)
+        //           ->orWhere('title', '=', 'Admin');
+        // })
+        // ->get();
+
+        $manajemens = Manajemen::where('status', 'tersedia')
+        // ->orWhere(function (Builder $query) {
+        //     $query->where('user_id', '!', Auth::user()->id);
+        // })
+        ->get();
 
         return Inertia::render('Pinjams/Create', compact('manajemens'));
     }
@@ -63,6 +75,7 @@ class PinjamController extends Controller
             $pinjam->sewa = $manajemen->tarif_sewa * $days;
             // dd($pinjam);
             $pinjam->save();
+
 
             return redirect()->route('pinjams.index');
         }

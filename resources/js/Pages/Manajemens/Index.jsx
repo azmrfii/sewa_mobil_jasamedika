@@ -49,7 +49,8 @@ export default function Manajemen({ auth }) {
                                             <td className="border px-4 py-2">{ nomor_plat }</td>
                                             <td className="border px-4 py-2">IDR. { tarif_sewa }</td>
                                             <td className="border px-4 py-2">{ status }</td>
-                                            <td className="border px-4 py-2">
+                                            {status === "tersedia" ? (
+                                                <td className="border px-4 py-2">
                                                 <Link
                                                     tabIndex="1"
                                                     className="px-4 py-2 text-sm text-white bg-blue-500 rounded"
@@ -66,10 +67,31 @@ export default function Manajemen({ auth }) {
                                                 >
                                                     Delete
                                                 </button>
-                                            </td>
+                                                </td>
+                                            ) : (
+                                                <td className="border px-4 py-2">--</td>
+                                            )}
+                                            {/* <td className="border px-4 py-2">
+                                                <Link
+                                                    tabIndex="1"
+                                                    className="px-4 py-2 text-sm text-white bg-blue-500 rounded"
+                                                    href={route("manajemens.edit", id)}
+                                                >
+                                                    Edit
+                                                </Link>
+                                                <button
+                                                    onClick={destroy}
+                                                    id={id}
+                                                    tabIndex="-1"
+                                                    type="button"
+                                                    className="mx-1 px-4 py-2 text-sm text-white bg-red-500 rounded"
+                                                >
+                                                    Delete
+                                                </button>
+                                            </td> */}
+
                                         </tr>
                                     ))}
-  
                                     {manajemens.length === 0 && (
                                         <tr>
                                             <td

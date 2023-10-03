@@ -77,8 +77,8 @@ export default function PinjamMobil({ auth }) {
                                      onChange={(e) => setData('manajemen_id', e.target.value)}
                                     >
                                         <option>--Pilih Mobil--</option>
-                                        {manajemens.map(({ id, merek, model, nomor_plat, tarif_sewa }) => (
-                                            <option value={id}>Merek: {merek}, Model: {model}, Nomor Plat: {nomor_plat}, Tarif Sewa/Hari: IDR. {tarif_sewa}</option>
+                                        {manajemens.map(({ id, merek, model, nomor_plat, tarif_sewa, status }) => (
+                                            <option value={id}>Merek: {merek}, Model: {model}, Nomor Plat: {nomor_plat}, Tarif Sewa/Hari: IDR. {tarif_sewa}, {status}</option>
                                         ))}
                                     </SelectInput>
                                     <InputError message={errors.manajemen_id} className="mt-2" />

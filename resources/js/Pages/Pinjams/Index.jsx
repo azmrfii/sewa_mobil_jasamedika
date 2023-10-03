@@ -38,17 +38,41 @@ export default function PinjamMobil({ auth }) {
                                         <th className="px-4 py-2">Tanggal Selesai</th>
                                         <th className="px-4 py-2">Mobil Id</th>
                                         <th className="px-4 py-2">Sewa</th>
+                                        <th className="px-4 py-2">Keterangan</th>
                                         <th className="px-4 py-2">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {pinjams.map(({ id, tgl_mulai, tgl_selesai, manajemen_id, user_id, sewa }) => (
+                                    {pinjams.map(({ id, tgl_mulai, tgl_selesai, manajemen_id, user_id, sewa, status }) => (
                                         <tr>
                                             <td className="border px-4 py-2">{ tgl_mulai }</td>
                                             <td className="border px-4 py-2">{ tgl_selesai }</td>
                                             <td className="border px-4 py-2">{ manajemen_id }</td>
                                             <td className="border px-4 py-2">IDR. { sewa }</td>
-                                            <td className="border px-4 py-2">
+                                            <td className="border px-4 py-2">{ status }</td>
+                                            {status === "sedang_disewa" ? (
+                                                <td className="border px-4 py-2">
+                                                <Link
+                                                    tabIndex="1"
+                                                    className="px-4 py-2 text-sm text-white bg-blue-500 rounded"
+                                                    href={route("manajemens.edit", id)}
+                                                >
+                                                    Edit
+                                                </Link>
+                                                <button
+                                                    onClick={destroy}
+                                                    id={id}
+                                                    tabIndex="-1"
+                                                    type="button"
+                                                    className="mx-1 px-4 py-2 text-sm text-white bg-red-500 rounded"
+                                                >
+                                                    Delete
+                                                </button>
+                                                </td>
+                                            ) : (
+                                                <td className="border px-4 py-2">--</td>
+                                            )}
+                                            {/* <td className="border px-4 py-2">
                                                 <Link
                                                     tabIndex="1"
                                                     className="px-4 py-2 text-sm text-white bg-yellow-500 rounded"
@@ -65,7 +89,7 @@ export default function PinjamMobil({ auth }) {
                                                 >
                                                     Cancel
                                                 </button>
-                                            </td>
+                                            </td> */}
                                         </tr>
                                     ))}
   

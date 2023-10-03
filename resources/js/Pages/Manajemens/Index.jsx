@@ -1,5 +1,6 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, Link, usePage, router } from '@inertiajs/react';
+import TextInput from '@/Components/TextInput';
 
 export default function Manajemen({ auth }) {
     const { manajemens } = usePage().props
@@ -29,7 +30,21 @@ export default function Manajemen({ auth }) {
                                     Tambah Mobil
                                 </Link>
                             </div>
-
+                            {/* <form action="/search" method="GET" className="w-full px-0 py-2 pb-3">
+                                <div >
+                                    <TextInput type="text" 
+                                        name="merek" 
+                                        className="w-600 px-4 py-2"
+                                        placeholder="Merek"
+                                    />
+                                    <TextInput type="text" 
+                                        name="model" 
+                                        className="w-600 px-4 py-2"
+                                        placeholder="Model"
+                                    />
+                                    <button type="submit" className="w-200 bg-blue-500 text-white px-4 py-2 rounded">Search</button>
+                                </div>
+                            </form> */}
                             <table className="table-fixed w-full">
                                 <thead>
                                     <tr className="bg-gray-100">

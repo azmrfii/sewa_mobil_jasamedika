@@ -32,19 +32,7 @@ class PinjamController extends Controller
      */
     public function create()
     {
-        // $manajemens = \Illuminate\Support\Facades\DB::table('manajemens');
-        // ->where('status', 'tersedia')
-        // ->where(function (Builder $query) {
-        //     $query->where('votes', '>', 100)
-        //           ->orWhere('title', '=', 'Admin');
-        // })
-        // ->get();
-
-        $manajemens = Manajemen::where('status', 'tersedia')
-        // ->orWhere(function (Builder $query) {
-        //     $query->where('user_id', '!', Auth::user()->id);
-        // })
-        ->get();
+        $manajemens = Manajemen::where('status', 'tersedia')->get();
 
         return Inertia::render('Pinjams/Create', compact('manajemens'));
     }
@@ -63,9 +51,7 @@ class PinjamController extends Controller
         $manajemen = Manajemen::find($request->manajemen_id);
         if($manajemen->status == 'tersedia') {
             $pinjam = new Pinjam;
-            // $pinjam->tgl_mulai = $request->tgl_mulai;
             $pinjam->tgl_mulai = Carbon::parse($request->tgl_mulai);
-            // $pinjam->tgl_selesai = $request->tgl_selesai;
             $pinjam->tgl_selesai = Carbon::parse($request->tgl_selesai);
 
             $days = $pinjam->tgl_selesai->diffInDays($pinjam->tgl_mulai);
@@ -75,7 +61,6 @@ class PinjamController extends Controller
             $pinjam->sewa = $manajemen->tarif_sewa * $days;
             // dd($pinjam);
             $pinjam->save();
-
 
             return redirect()->route('pinjams.index');
         }
@@ -96,6 +81,10 @@ class PinjamController extends Controller
      */
     public function edit(Pinjam $pinjam)
     {
+        if($pinjam->status != 'sedang_disewa') {
+            return redirect()->route('pinjams.index');
+        }
+
         return Inertia::render('Pinjams/Edit', [
             'pinjam' => $pinjam
         ]);

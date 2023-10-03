@@ -50,12 +50,7 @@ class ManajemenController extends Controller
      */
     public function edit(Manajemen $manajemen)
     {
-        // $manajemen = Manajemen::where('status', 'tersedia')->get($id);
-
         if($manajemen->status != 'tersedia') {
-            // return Inertia::render('Manajemens/Edit', [
-            //     'manajemen' => $manajemen
-            // ]);
             return redirect()->route('manajemens.index');
         }
 
